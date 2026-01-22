@@ -1,14 +1,23 @@
-# AugursClan Backend
+# AugursClan — Project Overview
 
-Backend del producto **AugursClan**: una plataforma en construcción para análisis y visualización de datos deportivos.  
-Este repositorio muestra decisiones de producto y de arquitectura en un sistema real (MVP en progreso).
+Plataforma en construcción para análisis y visualización de datos deportivos.  
+Este repositorio ofrece una **vista pública** de las decisiones de producto y arquitectura de AugursClan (MVP en progreso).
 
 > ℹ️ Este repositorio es una **vista pública del proyecto AugursClan**.  
 > El backend y el frontend se mantienen en repositorios privados; **el código y la aplicación en ejecución** pueden mostrarse en directo durante procesos de selección técnica.
 
 ---
 
-## 📌 Resumen rápido
+## Componentes del sistema
+
+- [Backend](#backend)
+- [Frontend](#frontend)
+
+---
+
+## Backend
+
+### Resumen rápido
 
 - **Qué es:** backend con API REST y procesos batch de sincronización de datos deportivos.
 - **Estado:** producto en construcción (MVP en progreso).
@@ -17,7 +26,7 @@ Este repositorio muestra decisiones de producto y de arquitectura en un sistema 
 
 ---
 
-## 🧩 Qué incluye (alto nivel)
+### Qué incluye (alto nivel)
 
 - **Backend API:** endpoints para consultar y exponer datos consolidados del dominio.
 - **Batch de sincronización:** procesos batch programados que sincronizan datos desde un proveedor externo.
@@ -27,7 +36,7 @@ Este repositorio muestra decisiones de producto y de arquitectura en un sistema 
 
 ---
 
-## 🏗️ Arquitectura (visión simple)
+### Arquitectura (visión simple)
 
 El backend está organizado como un proyecto **multi-módulo Maven**, con responsabilidades claramente separadas para facilitar la evolución del sistema:
 
@@ -52,13 +61,13 @@ flowchart LR
 
 ---
 
-## 🔄 Flujo principal (muy breve)
+### Flujo principal (muy breve)
 
 1. Un proceso batch sincroniza datos deportivos desde un proveedor externo.
 2. Los datos se normalizan y se persisten en la base de datos relacional.
 3. La API expone información consolidada para su consumo por el frontend.
 
-### 🔁 Flujo batch (visual)
+#### Flujo batch (visual)
 
 ```mermaid
 flowchart TB
@@ -70,7 +79,7 @@ flowchart TB
 
 ---
 
-## ✅ Decisiones de diseño
+### Decisiones de diseño
 
 - **Separación API vs Batch**  
   La lectura (API) y la ingesta/sincronización (batch) viven en módulos distintos (`api-service` y `batch-service`). Esto refleja separación a nivel de estructura del proyecto (no necesariamente despliegue independiente).
@@ -86,15 +95,15 @@ flowchart TB
 
 ---
 
-## 🧪 Estado actual / Roadmap breve
+### Estado actual / Roadmap breve
 
-### Estado actual
+#### Estado actual
 - Backend operativo con API y procesos batch de sincronización.
 - Integración funcional con proveedor externo de datos deportivos.
 - Persistencia relacional y modelo de dominio en evolución.
 - Base técnica estable para seguir iterando a nivel de producto.
 
-### Roadmap breve
+#### Roadmap breve
 - Ampliar cobertura de datos y mercados soportados.
 - Refinar lógica de dominio y validaciones.
 - Mejorar observabilidad del batch (logs y métricas).
@@ -102,7 +111,7 @@ flowchart TB
 
 ---
 
-## 🧰 Stack
+### Stack
 
 - **Backend:** Java, Spring Boot, Spring Batch  
 - **Arquitectura:** proyecto multi-módulo Maven, organización por capas  
@@ -110,29 +119,39 @@ flowchart TB
 - **Integraciones:** APIs REST externas (API-Football)  
 - **Infra local:** Docker Compose  
 - **Build:** Maven
-  
 
 ---
 
-## 🚀 Quickstart 
+## Frontend
 
-> Nota: el proyecto está en evolución. Esta sección se completará cuando los flujos de ejecución estén estabilizados.
+Aplicación web orientada a la exploración y comparación de datos deportivos, concebida como una capa de análisis sobre la API del backend.
 
-- Base de datos: `docker compose up -d`
-- Build: `mvn clean install`
-- Ejecución: *(pendiente de concretar)*
+### Prestaciones clave
+
+- Comparador interactivo de equipos y ligas con métricas deportivas y de apuestas.
+- Visualización de series temporales y comparativas para facilitar lectura de tendencias.
+- Soporte para exploración progresiva (filtros por país, liga, equipos).
+
+### Decisiones de diseño
+
+- Separación entre acceso a datos, transformación analítica y componentes de UI para mantener claridad y testabilidad.
+- Ejecución de parte de la lógica analítica en el frontend (probabilidades implícitas vs reales, suavizados, series temporales) para favorecer exploración y validación visual sin sobrecargar el backend.
+- Visualizaciones orientadas a legibilidad y contexto, no a densidad de información.
+
+### Estado actual
+
+- Frontend funcional conectado a la API del backend.
+- Secciones principales de comparación en evolución junto al modelo de datos.
+- Nuevas métricas y visualizaciones añadidas de forma incremental.
+
+**Stack principal:** Nuxt, Vue, TypeScript, Vuetify, ECharts, i18n.
 
 ---
 
-## 📷 Demo
-
-*(Pendiente. Se añadirá cuando el frontend esté listo y haya una demo navegable.)*
-
----
-
-## 🔗 Repos relacionados
+## Repos relacionados
 
 - **Backend (Spring Boot, Spring Batch):** repositorio privado.
 - **Frontend (Nuxt / Vue):** aplicación de visualización y exploración de datos, repositorio privado.
 
-> El código fuente se mantiene en repositorios privados y puede facilitarse bajo petición en procesos de selección técnica.
+> El backend y el frontend se mantienen en repositorios privados; **el código y la aplicación en ejecución** pueden mostrarse en directo durante procesos de selección técnica.
+
