@@ -3,6 +3,9 @@
 Backend del producto **AugursClan**: una plataforma en construcción para análisis y visualización de datos deportivos.  
 Este repositorio muestra decisiones de producto y de arquitectura en un sistema real (MVP en progreso).
 
+> ℹ️ Este repositorio es una **vista pública del proyecto AugursClan**.  
+> El backend y el frontend se mantienen en repositorios privados; **el código y la aplicación en ejecución** pueden mostrarse en directo durante procesos de selección técnica.
+
 ---
 
 ## 📌 Resumen rápido
@@ -129,6 +132,7 @@ flowchart TB
 
 ## 🔗 Repos relacionados
 
-- **Frontend (Nuxt/Vue):** *(pendiente de publicación)*
+- **Backend (Spring Boot, Spring Batch):** repositorio privado.
+- **Frontend (Nuxt / Vue):** aplicación de visualización y exploración de datos, repositorio privado.
 
-  
+> El código fuente se mantiene en repositorios privados y puede facilitarse bajo petición en procesos de selección técnica.
