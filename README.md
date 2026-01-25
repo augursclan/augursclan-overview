@@ -52,9 +52,9 @@ La API se documenta mediante Swagger (OpenAPI), lo que permite explorar recursos
 
 <img src="docs/images/backend/swagger/3-swagger-example-response.png" width="100%" />
 
-**Esquemas (tipado y estructura):**
+**Ejemplo de esquema (tipado y estructura):**
 
-<img src="docs/images/backend/swagger/4-swagger-schema.png" width="100%" />
+<img src="docs/images/backend/swagger/4-swagger-schema.png" width="650" />
 
 ---
 
