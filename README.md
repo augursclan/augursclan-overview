@@ -30,9 +30,31 @@ Este repositorio ofrece una **vista pública** de las decisiones de producto y a
 
 - **Backend API:** endpoints para consultar y exponer datos consolidados del dominio.
 - **Batch de sincronización:** procesos batch programados que sincronizan datos desde un proveedor externo.
-- **Integración externa (API-Football):** adaptadores para obtener datos deportivos desde un servicio de terceros.
+- **Integración externa:** adaptadores para obtener datos deportivos desde un servicio de terceros.
 - **Base de datos relacional:** persistencia estructurada de las entidades principales del dominio.
 - **Arquitectura modular por capas:** dominio desacoplado de infraestructura mediante adaptadores (DB/proveedores).
+
+---
+
+### API Contract (Swagger / OpenAPI)
+
+La API se documenta mediante Swagger (OpenAPI), lo que permite explorar recursos, parámetros y esquemas de respuesta de forma inmediata.
+
+**Listado de endpoints (visión global):**
+
+<img src="docs/images/backend/swagger/1-swagger-endpoints.png" width="100%" />
+
+**Ejemplo de endpoint (parámetros y ruta):**
+
+<img src="docs/images/backend/swagger/2-swagger-endpoint-params.png" width="100%" />
+
+**Ejemplo de respuesta (contrato):**
+
+<img src="docs/images/backend/swagger/3-swagger-example-response.png" width="100%" />
+
+**Esquemas (tipado y estructura):**
+
+<img src="docs/images/backend/swagger/4-swagger-schema.png" width="100%" />
 
 ---
 
@@ -54,7 +76,7 @@ flowchart LR
 
   subgraph Backend [Backend augursclan-backend]
     API --> DB[(PostgreSQL)]
-    BATCH[Batch Service<br/>batch-service] --> EXT[Proveedor externo<br/>API-Football]
+    BATCH[Batch Service<br/>batch-service] --> EXT[Proveedor externo]
     BATCH --> DB
   end
 ```
@@ -116,7 +138,7 @@ flowchart TB
 - **Backend:** Java, Spring Boot, Spring Batch  
 - **Arquitectura:** proyecto multi-módulo Maven, organización por capas  
 - **Persistencia:** PostgreSQL (local con Docker Compose), JPA/Hibernate  
-- **Integraciones:** APIs REST externas (API-Football)  
+- **Integraciones:** APIs REST externas  
 - **Infra local:** Docker Compose  
 - **Build:** Maven
 
@@ -130,7 +152,7 @@ Aplicación web orientada a la exploración y comparación de datos deportivos, 
 
 Comparador interactivo de dos equipos que permite analizar rendimiento, dinámica reciente y métricas avanzadas desde múltiples perspectivas.
 
-<img src="docs/images/frontend/comparator/1_1_dinamica_goles.png" width="100%" />
+<img src="docs/images/frontend/comparator/1-1-dinamica-goles.png" width="100%" />
 
 ---
 
@@ -138,7 +160,7 @@ Comparador interactivo de dos equipos que permite analizar rendimiento, dinámic
 
 Análisis de frecuencia acumulada y comportamiento reciente de goles, diferenciando contexto local / visitante y ventanas temporales configurables.
 
-<img src="docs/images/frontend/comparator/1_2_distribucion_goles.png" width="100%" />
+<img src="docs/images/frontend/comparator/1-2-distribucion-goles.png" width="100%" />
 
 ---
 
@@ -146,7 +168,7 @@ Análisis de frecuencia acumulada y comportamiento reciente de goles, diferencia
 
 Comparativa entre probabilidad implícita del mercado y probabilidad real observada, incluyendo la desviación (Δp) como métrica de tensión.
 
-<img src="docs/images/frontend/comparator/1_3_expectativa_victoria_goles.png" width="100%" />
+<img src="docs/images/frontend/comparator/1-3-expectativa-victoria-goles.png" width="100%" />
 
 ---
 
@@ -154,9 +176,9 @@ Comparativa entre probabilidad implícita del mercado y probabilidad real observ
 
 Evolución temporal de métricas clave de ataque, con suavizados configurables y separación por local / visitante.
 
-<img src="docs/images/frontend/comparator/2_1_dinamica_corners.png" width="100%" />
+<img src="docs/images/frontend/comparator/2-1-dinamica-corners.png" width="100%" />
 
-<img src="docs/images/frontend/comparator/3_1_dinamica_tiros_puerta.png" width="100%" />
+<img src="docs/images/frontend/comparator/3-1-dinamica-tiros-puerta.png" width="100%" />
 
 ---
 
@@ -164,7 +186,7 @@ Evolución temporal de métricas clave de ataque, con suavizados configurables y
 
 Indicadores de dominio y generación de peligro: posesión de balón y tiros dentro del área.
 
-<img src="docs/images/frontend/comparator/4_1_posesion_tiros_en_el_area.png" width="100%" />
+<img src="docs/images/frontend/comparator/4-1-posesion-tiros-en-el-area.png" width="100%" />
 
 ---
 
@@ -172,7 +194,7 @@ Indicadores de dominio y generación de peligro: posesión de balón y tiros den
 
 Métricas relacionadas con estructura de juego y respuesta defensiva: fueras de juego y paradas del portero.
 
-<img src="docs/images/frontend/comparator/4_2_fueras_juego_paras_portero.png" width="100%" />
+<img src="docs/images/frontend/comparator/4-2-fueras-juego-paras-portero.png" width="100%" />
 
 ---
 
@@ -180,7 +202,7 @@ Métricas relacionadas con estructura de juego y respuesta defensiva: fueras de 
 
 Seguimiento longitudinal del rendimiento en competición: puntos acumulados y balance de goles.
 
-<img src="docs/images/frontend/comparator/4_3_puntos_balance_goles.png" width="100%" />
+<img src="docs/images/frontend/comparator/4-3-puntos-balance-goles.png" width="100%" />
 
 ---
 
@@ -188,7 +210,7 @@ Seguimiento longitudinal del rendimiento en competición: puntos acumulados y ba
 
 Situación en la clasificación y resumen comparativo de rendimiento agregado.
 
-<img src="docs/images/frontend/comparator/5_1_clasificacion_rendimiento_global.png" width="100%" />
+<img src="docs/images/frontend/comparator/5-1-clasificacion-rendimiento-global.png" width="100%" />
 
 ---
 
