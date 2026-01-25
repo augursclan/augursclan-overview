@@ -54,7 +54,7 @@ La API se documenta mediante Swagger (OpenAPI), lo que permite explorar recursos
 
 **Ejemplo de esquema (tipado y estructura):**
 
-<img src="docs/images/backend/swagger/4-swagger-schema.png" width="500" />
+<img src="docs/images/backend/swagger/4-swagger-schema.png" width="75%" />
 
 ---
 
@@ -80,6 +80,14 @@ flowchart LR
     BATCH --> DB
   end
 ```
+
+---
+
+### Modelo de datos relacional (vista simplificada)
+
+Representación del modelo relacional principal, centrada en entidades de dominio y sus relaciones clave.
+
+<img src="docs/images/backend/database/erd-core.png" width="90%" />
 
 ---
 
@@ -152,7 +160,7 @@ Aplicación web orientada a la exploración y comparación de datos deportivos, 
 
 Comparador interactivo de dos equipos que permite analizar rendimiento, dinámica reciente y métricas avanzadas desde múltiples perspectivas.
 
-<img src="docs/images/frontend/comparator/1-1-dinamica-goles.png" width="100%" />
+<img src="docs/images/frontend/comparator/1-1-dinamica-goles.png" width="95%" />
 
 ---
 
@@ -160,7 +168,7 @@ Comparador interactivo de dos equipos que permite analizar rendimiento, dinámic
 
 Análisis de frecuencia acumulada y comportamiento reciente de goles, diferenciando contexto local / visitante y ventanas temporales configurables.
 
-<img src="docs/images/frontend/comparator/1-2-distribucion-goles.png" width="100%" />
+<img src="docs/images/frontend/comparator/1-2-distribucion-goles.png" width="95%" />
 
 ---
 
@@ -168,7 +176,7 @@ Análisis de frecuencia acumulada y comportamiento reciente de goles, diferencia
 
 Comparativa entre probabilidad implícita del mercado y probabilidad real observada, incluyendo la desviación (Δp) como métrica de tensión.
 
-<img src="docs/images/frontend/comparator/1-3-expectativa-victoria-goles.png" width="100%" />
+<img src="docs/images/frontend/comparator/1-3-expectativa-victoria-goles.png" width="95%" />
 
 ---
 
@@ -176,9 +184,9 @@ Comparativa entre probabilidad implícita del mercado y probabilidad real observ
 
 Evolución temporal de métricas clave de ataque, con suavizados configurables y separación por local / visitante.
 
-<img src="docs/images/frontend/comparator/2-1-dinamica-corners.png" width="100%" />
+<img src="docs/images/frontend/comparator/2-1-dinamica-corners.png" width="95%" />
 
-<img src="docs/images/frontend/comparator/3-1-dinamica-tiros-puerta.png" width="100%" />
+<img src="docs/images/frontend/comparator/3-1-dinamica-tiros-puerta.png" width="95%" />
 
 ---
 
@@ -186,7 +194,7 @@ Evolución temporal de métricas clave de ataque, con suavizados configurables y
 
 Indicadores de dominio y generación de peligro: posesión de balón y tiros dentro del área.
 
-<img src="docs/images/frontend/comparator/4-1-posesion-tiros-en-el-area.png" width="100%" />
+<img src="docs/images/frontend/comparator/4-1-posesion-tiros-en-el-area.png" width="95%" />
 
 ---
 
@@ -194,7 +202,7 @@ Indicadores de dominio y generación de peligro: posesión de balón y tiros den
 
 Métricas relacionadas con estructura de juego y respuesta defensiva: fueras de juego y paradas del portero.
 
-<img src="docs/images/frontend/comparator/4-2-fueras-juego-paras-portero.png" width="100%" />
+<img src="docs/images/frontend/comparator/4-2-fueras-juego-paras-portero.png" width="95%" />
 
 ---
 
@@ -202,7 +210,7 @@ Métricas relacionadas con estructura de juego y respuesta defensiva: fueras de 
 
 Seguimiento longitudinal del rendimiento en competición: puntos acumulados y balance de goles.
 
-<img src="docs/images/frontend/comparator/4-3-puntos-balance-goles.png" width="100%" />
+<img src="docs/images/frontend/comparator/4-3-puntos-balance-goles.png" width="95%" />
 
 ---
 
@@ -210,24 +218,9 @@ Seguimiento longitudinal del rendimiento en competición: puntos acumulados y ba
 
 Situación en la clasificación y resumen comparativo de rendimiento agregado.
 
-<img src="docs/images/frontend/comparator/5-1-clasificacion-rendimiento-global.png" width="100%" />
+<img src="docs/images/frontend/comparator/5-1-clasificacion-rendimiento-global.png" width="95%" />
 
 ---
-
-### Decisiones de diseño
-
-- Separación entre acceso a datos, transformación analítica y componentes de UI para mantener claridad y testabilidad.
-- Ejecución de parte de la lógica analítica en el frontend (probabilidades implícitas vs reales, suavizados, series temporales) para favorecer exploración y validación visual sin sobrecargar el backend.
-- Visualizaciones orientadas a legibilidad y contexto, no a densidad de información.
-
-### Estado actual
-
-- Frontend funcional conectado a la API del backend.
-- Secciones principales de comparación en evolución junto al modelo de datos.
-- Nuevas métricas y visualizaciones añadidas de forma incremental.
-
-**Stack principal:** Nuxt, Vue, TypeScript, Vuetify, ECharts, i18n.
-
 
 ### Decisiones de diseño
 
