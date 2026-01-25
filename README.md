@@ -42,15 +42,15 @@ La API se documenta mediante Swagger (OpenAPI), lo que permite explorar recursos
 
 **Listado de endpoints (visión global):**
 
-<img src="docs/images/backend/swagger/1-swagger-endpoints.png" width="100%" />
+<img src="docs/images/backend/swagger/1-swagger-endpoints.png" width="90%" />
 
 **Ejemplo de endpoint (parámetros y ruta):**
 
-<img src="docs/images/backend/swagger/2-swagger-endpoint-params.png" width="100%" />
+<img src="docs/images/backend/swagger/2-swagger-endpoint-params.png" width="90%" />
 
 **Ejemplo de respuesta (contrato):**
 
-<img src="docs/images/backend/swagger/3-swagger-example-response.png" width="100%" />
+<img src="docs/images/backend/swagger/3-swagger-example-response.png" width="50%" />
 
 **Ejemplo de esquema (tipado y estructura):**
 
@@ -87,7 +87,7 @@ flowchart LR
 
 Representación del modelo relacional principal, centrada en entidades de dominio y sus relaciones clave.
 
-<img src="docs/images/backend/database/erd-core.png" width="75%" />
+<img src="docs/images/backend/database/erd-core.png" width="60%" />
 
 ---
 
@@ -154,7 +154,7 @@ flowchart TB
 
 ### Estructura del backend (vista modular)
 
-<img src="docs/images/backend/structure/backend-modules.png" width="75%" />
+<img src="docs/images/backend/structure/backend-modules.png" width="60%" />
 
 - **api-service:** capa de entrada (REST) para exponer casos de uso de lectura.
 - **batch-service:** capa de ingesta y sincronización de datos externos.
@@ -251,7 +251,7 @@ Situación en la clasificación y resumen comparativo de rendimiento agregado.
 
 ### Estructura del frontend (orientada a análisis y visualización)
 
-<img src="docs/images/frontend/structure/frontend-folders.png" width="75%" />
+<img src="docs/images/frontend/structure/frontend-folders.png" width="50%" />
 
 - **components:** componentes de UI reutilizables y secciones del comparador (gráficos, layouts visuales, widgets).
 - **composables:** lógica de orquestación y estado (fetch, filtros, params, sincronización UI, helpers Vue/Nuxt).
