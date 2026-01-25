@@ -126,11 +126,86 @@ flowchart TB
 
 Aplicación web orientada a la exploración y comparación de datos deportivos, concebida como una capa de análisis sobre la API del backend.
 
-### Prestaciones clave
+### Vista general del comparador
 
-- Comparador interactivo de equipos y ligas con métricas deportivas y de apuestas.
-- Visualización de series temporales y comparativas para facilitar lectura de tendencias.
-- Soporte para exploración progresiva (filtros por país, liga, equipos).
+Comparador interactivo de dos equipos que permite analizar rendimiento, dinámica reciente y métricas avanzadas desde múltiples perspectivas.
+
+<img src="docs/images/frontend/comparator/1_1_dinamica_goles.png" width="100%" />
+
+---
+
+### Distribución y dinámica de goles
+
+Análisis de frecuencia acumulada y comportamiento reciente de goles, diferenciando contexto local / visitante y ventanas temporales configurables.
+
+<img src="docs/images/frontend/comparator/1_2_distribucion_goles.png" width="100%" />
+
+---
+
+### Mercado vs realidad — Expectativa de victoria
+
+Comparativa entre probabilidad implícita del mercado y probabilidad real observada, incluyendo la desviación (Δp) como métrica de tensión.
+
+<img src="docs/images/frontend/comparator/1_3_expectativa_victoria_goles.png" width="100%" />
+
+---
+
+### Estadísticos ofensivos
+
+Evolución temporal de métricas clave de ataque, con suavizados configurables y separación por local / visitante.
+
+<img src="docs/images/frontend/comparator/2_1_dinamica_corners.png" width="100%" />
+
+<img src="docs/images/frontend/comparator/3_1_dinamica_tiros_puerta.png" width="100%" />
+
+---
+
+### Control del juego y presión ofensiva
+
+Indicadores de dominio y generación de peligro: posesión de balón y tiros dentro del área.
+
+<img src="docs/images/frontend/comparator/4_1_posesion_tiros_en_el_area.png" width="100%" />
+
+---
+
+### Juego táctico y rendimiento defensivo
+
+Métricas relacionadas con estructura de juego y respuesta defensiva: fueras de juego y paradas del portero.
+
+<img src="docs/images/frontend/comparator/4_2_fueras_juego_paras_portero.png" width="100%" />
+
+---
+
+### Evolución competitiva
+
+Seguimiento longitudinal del rendimiento en competición: puntos acumulados y balance de goles.
+
+<img src="docs/images/frontend/comparator/4_3_puntos_balance_goles.png" width="100%" />
+
+---
+
+### Contexto de liga y rendimiento global
+
+Situación en la clasificación y resumen comparativo de rendimiento agregado.
+
+<img src="docs/images/frontend/comparator/5_1_clasificacion_rendimiento_global.png" width="100%" />
+
+---
+
+### Decisiones de diseño
+
+- Separación entre acceso a datos, transformación analítica y componentes de UI para mantener claridad y testabilidad.
+- Ejecución de parte de la lógica analítica en el frontend (probabilidades implícitas vs reales, suavizados, series temporales) para favorecer exploración y validación visual sin sobrecargar el backend.
+- Visualizaciones orientadas a legibilidad y contexto, no a densidad de información.
+
+### Estado actual
+
+- Frontend funcional conectado a la API del backend.
+- Secciones principales de comparación en evolución junto al modelo de datos.
+- Nuevas métricas y visualizaciones añadidas de forma incremental.
+
+**Stack principal:** Nuxt, Vue, TypeScript, Vuetify, ECharts, i18n.
+
 
 ### Decisiones de diseño
 
