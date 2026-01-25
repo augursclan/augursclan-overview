@@ -87,7 +87,7 @@ flowchart LR
 
 Representación del modelo relacional principal, centrada en entidades de dominio y sus relaciones clave.
 
-<img src="docs/images/backend/database/erd-core.png" width="90%" />
+<img src="docs/images/backend/database/erd-core.png" width="75%" />
 
 ---
 
@@ -149,6 +149,17 @@ flowchart TB
 - **Integraciones:** APIs REST externas  
 - **Infra local:** Docker Compose  
 - **Build:** Maven
+
+---
+
+### Estructura del backend (vista modular)
+
+<img src="docs/images/backend/structure/backend-modules.png" width="75%" />
+
+- **api-service:** capa de entrada (REST) para exponer casos de uso de lectura.
+- **batch-service:** capa de ingesta y sincronización de datos externos.
+- **common:** núcleo del dominio y lógica de aplicación, independiente de infraestructura.
+- **infrastructure:** adaptadores técnicos (DB, clientes REST, configuración).
 
 ---
 
@@ -235,6 +246,17 @@ Situación en la clasificación y resumen comparativo de rendimiento agregado.
 - Nuevas métricas y visualizaciones añadidas de forma incremental.
 
 **Stack principal:** Nuxt, Vue, TypeScript, Vuetify, ECharts, i18n.
+
+---
+
+### Estructura del frontend (orientada a análisis y visualización)
+
+<img src="docs/images/frontend/structure/frontend-folders.png" width="75%" />
+
+- **components:** componentes de UI reutilizables y secciones del comparador (gráficos, layouts visuales, widgets).
+- **composables:** lógica de orquestación y estado (fetch, filtros, params, sincronización UI, helpers Vue/Nuxt).
+- **domain:** transformación analítica y reglas de negocio (series temporales, suavizados, métricas, probabilidades).
+- **types:** contratos TypeScript y DTOs compartidos (tipos de API, modelos de gráficos, estructuras de dominio).
 
 ---
 
