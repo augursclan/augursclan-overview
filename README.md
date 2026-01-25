@@ -42,11 +42,11 @@ La API se documenta mediante Swagger (OpenAPI), lo que permite explorar recursos
 
 **Listado de endpoints (visión global):**
 
-<img src="docs/images/backend/swagger/1-swagger-endpoints.png" width="90%" />
+<img src="docs/images/backend/swagger/1-swagger-endpoints.png" width="80%" />
 
 **Ejemplo de endpoint (parámetros y ruta):**
 
-<img src="docs/images/backend/swagger/2-swagger-endpoint-params.png" width="90%" />
+<img src="docs/images/backend/swagger/2-swagger-endpoint-params.png" width="80%" />
 
 **Ejemplo de respuesta (contrato):**
 
@@ -154,7 +154,7 @@ flowchart TB
 
 ### Estructura del backend (vista modular)
 
-<img src="docs/images/backend/structure/backend-modules.png" width="60%" />
+<img src="docs/images/backend/structure/backend-modules.png" width="50%" />
 
 - **api-service:** capa de entrada (REST) para exponer casos de uso de lectura.
 - **batch-service:** capa de ingesta y sincronización de datos externos.
@@ -251,7 +251,7 @@ Situación en la clasificación y resumen comparativo de rendimiento agregado.
 
 ### Estructura del frontend (orientada a análisis y visualización)
 
-<img src="docs/images/frontend/structure/frontend-folders.png" width="50%" />
+<img src="docs/images/frontend/structure/frontend-folders.png" width="40%" />
 
 - **components:** componentes de UI reutilizables y secciones del comparador (gráficos, layouts visuales, widgets).
 - **composables:** lógica de orquestación y estado (fetch, filtros, params, sincronización UI, helpers Vue/Nuxt).
