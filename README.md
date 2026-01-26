@@ -1,10 +1,16 @@
 # AugursClan — Project Overview
 
 Plataforma en construcción para análisis y visualización de datos deportivos.  
-Este repositorio ofrece una **vista pública** de las decisiones de producto y arquitectura de AugursClan (MVP en progreso).
+Este repositorio ofrece una **vista pública** de las decisiones de producto y arquitectura del proyecto AugursClan (MVP en progreso).
 
 > ℹ️ Este repositorio es una **vista pública del proyecto AugursClan**.  
 > El backend y el frontend se mantienen en repositorios privados; **el código y la aplicación en ejecución** pueden mostrarse en directo durante procesos de selección técnica.
+
+---
+
+> **Contexto profesional**  
+> El desarrollo de este producto tiene un enfoque principalmente técnico y profesional.  
+> Se concibe como una muestra del tipo de rol, responsabilidades y criterio técnico que asumo en proyectos de software end-to-end.
 
 ---
 
@@ -19,10 +25,10 @@ Este repositorio ofrece una **vista pública** de las decisiones de producto y a
 
 ### Resumen rápido
 
-- **Qué es:** backend con API REST y procesos batch de sincronización de datos deportivos.
-- **Estado:** producto en construcción (MVP en progreso).
-- **Para quién:** recruiters y equipos técnicos que evalúan criterio técnico y capacidad de ejecución.
-- **Qué demuestra:** arquitectura modular por capas, integraciones encapsuladas y decisiones de diseño orientadas a mantenibilidad.
+- **Qué es:** backend con API REST y procesos batch de sincronización de datos deportivos desde un proveedor externo.
+- **Estado:** MVP en evolución, con funcionalidades base ya operativas a nivel de ingesta, persistencia y exposición de datos, y componentes de visualización que permiten realizar análisis exploratorios sobre la información.
+- **Para quién:** recruiters y equipos técnicos interesados en evaluar criterio técnico, capacidad de ejecución y toma de decisiones en proyectos de software reales.
+- **Qué demuestra:** arquitectura modular por capas, integraciones encapsuladas y decisiones de diseño orientadas a mantenibilidad, con un enfoque inspirado en DDD y arquitectura hexagonal.
 
 ---
 
@@ -30,9 +36,9 @@ Este repositorio ofrece una **vista pública** de las decisiones de producto y a
 
 - **Backend API:** endpoints para consultar y exponer datos consolidados del dominio.
 - **Batch de sincronización:** procesos batch programados que sincronizan datos desde un proveedor externo.
-- **Integración externa:** adaptadores para obtener datos deportivos desde un servicio de terceros.
+- **Integración externa:** adaptadores para obtener e integrar datos deportivos desde el proveedor de datos.
 - **Base de datos relacional:** persistencia estructurada de las entidades principales del dominio.
-- **Arquitectura modular por capas:** dominio desacoplado de infraestructura mediante adaptadores (DB/proveedores).
+- **Arquitectura modular por capas:** dominio desacoplado de infraestructura mediante adaptadores (DB, proveedor externo).
 
 ---
 
@@ -63,20 +69,20 @@ La API se documenta mediante Swagger (OpenAPI), lo que permite explorar recursos
 El backend está organizado como un proyecto **multi-módulo Maven**, con responsabilidades claramente separadas para facilitar la evolución del sistema:
 
 - **api-service:** expone una API REST para la consulta de datos consolidados del dominio.
-- **batch-service:** ejecuta procesos batch encargados de sincronizar y actualizar datos desde proveedores externos.
+- **batch-service:** ejecuta procesos batch encargados de sincronizar y actualizar datos desde el proveedor externo.
 - **common:** concentra el modelo de dominio y la lógica compartida, reutilizable por distintos casos de uso.
-- **infrastructure:** contiene implementaciones técnicas como persistencia, clientes externos y configuración.
+- **infrastructure:** contiene implementaciones técnicas como persistencia, adaptadores de integración con proveedores externos y configuración.
 
 Esta organización permite aislar responsabilidades, reducir acoplamientos y evolucionar el sistema de forma incremental.
 
 ```mermaid
 flowchart LR
-  U[Usuario] --> FE[Frontend<br/>augursclan-frontend]
-  FE --> API[API Service<br/>api-service]
+  U[Usuario] --> FE[augursclan-frontend]
+  FE --> API[api-service]
 
-  subgraph Backend [Backend augursclan-backend]
+  subgraph Backend<br/>[augursclan-backend]
     API --> DB[(PostgreSQL)]
-    BATCH[Batch Service<br/>batch-service] --> EXT[Proveedor externo]
+    BATCH[batch-service] --> EXT[proveedor externo]
     BATCH --> DB
   end
 ```
@@ -87,7 +93,7 @@ flowchart LR
 
 Representación del modelo relacional principal, centrada en entidades de dominio y sus relaciones clave.
 
-<img src="docs/images/backend/database/erd-core.png" width="60%" />
+<img src="docs/images/backend/database/erd-core.png" width="65%" />
 
 ---
 
@@ -112,16 +118,16 @@ flowchart TB
 ### Decisiones de diseño
 
 - **Separación API vs Batch**  
-  La lectura (API) y la ingesta/sincronización (batch) viven en módulos distintos (`api-service` y `batch-service`). Esto refleja separación a nivel de estructura del proyecto (no necesariamente despliegue independiente).
-
-- **Dominio y lógica compartida en `common`**  
-  El módulo `common` concentra piezas compartidas (dominio/aplicación/acceso a datos en submódulos), favoreciendo reutilización y consistencia.
+  La lectura (API) y la ingesta/sincronización (batch) viven en módulos distintos (`api-service` y `batch-service`). Esto refleja una separación clara de responsabilidades a nivel de estructura del proyecto, permitiendo su despliegue conjunto o independiente según necesidades de evolución.
+  
+- **Dominio y lógica compartida en `common`**    
+  El módulo `common` concentra piezas compartidas (modelo de dominio y lógica de aplicación, junto a contratos y abstracciones), favoreciendo reutilización y consistencia.
 
 - **Integraciones encapsuladas**  
   Las integraciones externas se implementan como adaptadores de salida (p. ej. un adaptador REST para API-Football que implementa un puerto del dominio).
 
 - **Inspiración DDD / puertos-adaptadores**  
-  La separación por dominio, aplicación y adaptadores, junto al uso de puertos, es coherente con un enfoque inspirado en DDD y arquitectura hexagonal, sin afirmar una implementación formal/ortodoxa.
+  La separación por dominio, aplicación y adaptadores, junto al uso de puertos, es coherente con un enfoque inspirado en DDD y arquitectura hexagonal, sin afirmar una implementación formal/ortodoxa. Este enfoque coloca el dominio en el centro del sistema y los casos de uso a su alrededor, de forma que las dependencias se dirigen hacia el núcleo y la infraestructura queda desacoplada, facilitando la evolución del sistema sin acoplamientos innecesarios.
 
 ---
 
@@ -134,21 +140,22 @@ flowchart TB
 - Base técnica estable para seguir iterando a nivel de producto.
 
 #### Roadmap breve
-- Ampliar cobertura de datos y mercados soportados.
-- Refinar lógica de dominio y validaciones.
-- Mejorar observabilidad del batch (logs y métricas).
-- Exponer nuevos endpoints orientados a visualización y análisis.
+- Extensión progresiva de datos y mercados soportados.
+- Consolidación del modelo de dominio y sus reglas.
+- Cierre del ciclo de observabilidad del batch.
+- Evolución de la API orientada a nuevos casos de lectura y análisis.
 
 ---
 
 ### Stack
 
 - **Backend:** Java, Spring Boot, Spring Batch  
-- **Arquitectura:** proyecto multi-módulo Maven, organización por capas  
-- **Persistencia:** PostgreSQL (local con Docker Compose), JPA/Hibernate  
-- **Integraciones:** APIs REST externas  
-- **Infra local:** Docker Compose  
-- **Build:** Maven
+- **Arquitectura:** proyecto multi-módulo Maven, con separación clara de dominio, aplicación e infraestructura, siguiendo principios inspirados en DDD y arquitectura hexagonal.
+- **API:** API REST para exposición de datos y casos de lectura, documentada con OpenAPI / Swagger.
+- **Persistencia:** PostgreSQL (local con Docker Compose), JPA / Hibernate.
+- **Integraciones:** consumo de APIs REST de proveedor externo mediante adaptadores.
+- **Infra local:** Docker Compose.
+- **Build:** Maven.
 
 ---
 
@@ -238,12 +245,13 @@ Situación en la clasificación y resumen comparativo de rendimiento agregado.
 - Separación entre acceso a datos, transformación analítica y componentes de UI para mantener claridad y testabilidad.
 - Ejecución de parte de la lógica analítica en el frontend (probabilidades implícitas vs reales, suavizados, series temporales) para favorecer exploración y validación visual sin sobrecargar el backend.
 - Visualizaciones orientadas a legibilidad y contexto, no a densidad de información.
+- Las visualizaciones y métricas están concebidas como herramientas de apoyo a la interpretación y al criterio humano, priorizando contexto, comparación y narrativa frente a automatismos o decisiones opacas.
 
 ### Estado actual
 
-- Frontend funcional conectado a la API del backend.
-- Secciones principales de comparación en evolución junto al modelo de datos.
-- Nuevas métricas y visualizaciones añadidas de forma incremental.
+- Frontend funcional y estable, conectado a la API del backend.
+- Secciones principales de comparación ya operativas, que evolucionan en paralelo al modelo de datos.
+- Métricas y visualizaciones incorporadas de forma incremental.
 
 **Stack principal:** Nuxt, Vue, TypeScript, Vuetify, ECharts, i18n.
 
@@ -251,7 +259,7 @@ Situación en la clasificación y resumen comparativo de rendimiento agregado.
 
 ### Estructura del frontend (orientada a análisis y visualización)
 
-<img src="docs/images/frontend/structure/frontend-folders.png" width="40%" />
+<img src="docs/images/frontend/structure/frontend-folders.png" width="35%" />
 
 - **components:** componentes de UI reutilizables y secciones del comparador (gráficos, layouts visuales, widgets).
 - **composables:** lógica de orquestación y estado (fetch, filtros, params, sincronización UI, helpers Vue/Nuxt).
@@ -262,8 +270,8 @@ Situación en la clasificación y resumen comparativo de rendimiento agregado.
 
 ## Repos relacionados
 
-- **Backend (Spring Boot, Spring Batch):** repositorio privado.
-- **Frontend (Nuxt / Vue):** aplicación de visualización y exploración de datos, repositorio privado.
+- **Backend:** repositorio privado (API y procesos batch).
+- **Frontend:** repositorio privado (aplicación de visualización y exploración de datos).
 
 > El backend y el frontend se mantienen en repositorios privados; **el código y la aplicación en ejecución** pueden mostrarse en directo durante procesos de selección técnica.
 
