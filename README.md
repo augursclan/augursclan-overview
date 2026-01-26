@@ -77,12 +77,12 @@ Esta organización permite aislar responsabilidades, reducir acoplamientos y evo
 
 ```mermaid
 flowchart LR
-  U[Usuario] --> FE[augursclan-frontend]
-  FE --> API[api-service]
+  U[Usuario] --> FE[Frontend<br/>augursclan-frontend]
+  FE --> API[API Service<br/>api-service]
 
-  subgraph Backend<br/>[augursclan-backend]
+  subgraph Backend [Backend augursclan-backend]
     API --> DB[(PostgreSQL)]
-    BATCH[batch-service] --> EXT[proveedor externo]
+    BATCH[Batch Service<br/>batch-service] --> EXT[Proveedor externo]
     BATCH --> DB
   end
 ```
