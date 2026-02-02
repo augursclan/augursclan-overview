@@ -1,20 +1,20 @@
 # AugursClan — Project Overview
 
-Plataforma en construcción para análisis y visualización de datos deportivos.  
-Este repositorio ofrece una **vista pública** de las decisiones de producto y arquitectura del proyecto AugursClan (MVP en progreso).
+Platform under development for sports data analysis and visualization.  
+This repository provides a **public-facing overview** of the product and architectural decisions behind the AugursClan project (MVP in progress).
 
-> ℹ️ Este repositorio es una **vista pública del proyecto AugursClan**.  
-> El backend y el frontend se mantienen en repositorios privados; **el código y la aplicación en ejecución** pueden mostrarse en directo durante procesos de selección técnica.
-
----
-
-> **Contexto profesional**  
-> El desarrollo de este producto tiene un enfoque principalmente técnico y profesional.  
-> Se concibe como una muestra del tipo de rol, responsabilidades y criterio técnico que asumo en proyectos de software end-to-end.
+> ℹ️ This repository is a **public overview of the AugursClan project**.  
+> The backend and frontend are maintained in private repositories; **the source code and the running application** can be demonstrated live during technical interview processes.
 
 ---
 
-## Componentes del sistema
+> **Professional context**  
+> The development of this product follows a primarily technical and professional approach.  
+> It is conceived as a showcase of the type of role, responsibilities, and technical judgment I assume in end-to-end software projects.
+
+---
+
+## System Components
 
 - [Backend](#backend)
 - [Frontend](#frontend)
@@ -23,184 +23,185 @@ Este repositorio ofrece una **vista pública** de las decisiones de producto y a
 
 ## Backend
 
-### Resumen rápido
+### Quick overview
 
-- **Qué es:** backend con API REST y procesos batch de sincronización de datos deportivos desde un proveedor externo.
-- **Estado:** MVP en evolución, con funcionalidades base ya operativas a nivel de ingesta, persistencia y exposición de datos, y componentes de visualización que permiten realizar análisis exploratorios sobre la información.
-- **Para quién:** recruiters y equipos técnicos interesados en evaluar criterio técnico, capacidad de ejecución y toma de decisiones en proyectos de software reales.
-- **Qué demuestra:** arquitectura modular por capas, integraciones encapsuladas y decisiones de diseño orientadas a mantenibilidad, con un enfoque inspirado en DDD y arquitectura hexagonal.
+- **What it is:** backend with a REST API and batch processes for synchronizing sports data from an external provider.
+- **Status:** evolving MVP, with core functionality already operational in terms of data ingestion, persistence, and exposure, along with visualization components that enable exploratory analysis of the data.
+- **Target audience:** recruiters and technical teams interested in evaluating technical judgment, execution capability, and decision-making in real-world software projects.
+- **What it demonstrates:** a layered, modular architecture, encapsulated integrations, and design decisions focused on maintainability, inspired by DDD and hexagonal architecture principles.
 
 ---
 
-### Qué incluye (alto nivel)
+### What it includes (high-level)
 
-- **Backend API:** endpoints para consultar y exponer datos consolidados del dominio.
-- **Batch de sincronización:** procesos batch programados que sincronizan datos desde un proveedor externo.
-- **Integración externa:** adaptadores para obtener e integrar datos deportivos desde el proveedor de datos.
-- **Base de datos relacional:** persistencia estructurada de las entidades principales del dominio.
-- **Arquitectura modular por capas:** dominio desacoplado de infraestructura mediante adaptadores (DB, proveedor externo).
+- **Backend API:** endpoints to query and expose consolidated domain data.
+- **Synchronization batch processes:** scheduled batch jobs that synchronize data from an external provider.
+- **External integration:** adapters to fetch and integrate sports data from the data provider.
+- **Relational database:** structured persistence of the core domain entities.
+- **Layered modular architecture:** domain decoupled from infrastructure through adapters (DB, external provider).
 
 ---
 
 ### API Contract (Swagger / OpenAPI)
 
-La API se documenta mediante Swagger (OpenAPI), lo que permite explorar recursos, parámetros y esquemas de respuesta de forma inmediata.
+The API is documented using Swagger (OpenAPI), allowing immediate exploration of resources, parameters, and response schemas.
 
-**Listado de endpoints (visión global):**
+**Endpoints list (high-level view):**
 
 <img src="docs/images/backend/swagger/1-swagger-endpoints.png" width="80%" />
 
-**Ejemplo de endpoint (parámetros y ruta):**
+**Endpoint example (path and parameters):**
 
 <img src="docs/images/backend/swagger/2-swagger-endpoint-params.png" width="80%" />
 
-**Ejemplo de respuesta (contrato):**
+**Response example (contract):**
 
 <img src="docs/images/backend/swagger/3-swagger-example-response.png" width="50%" />
 
-**Ejemplo de esquema (tipado y estructura):**
+**Schema example (typing and structure):**
 
 <img src="docs/images/backend/swagger/4-swagger-schema.png" width="50%" />
 
 ---
 
-### Arquitectura (visión simple)
+### Architecture (simple view)
 
-El backend está organizado como un proyecto **multi-módulo Maven**, con responsabilidades claramente separadas para facilitar la evolución del sistema:
+The backend is organized as a **multi-module Maven project**, with clearly separated responsibilities to facilitate system evolution:
 
-- **api-service:** expone una API REST para la consulta de datos consolidados del dominio.
-- **batch-service:** ejecuta procesos batch encargados de sincronizar y actualizar datos desde el proveedor externo.
-- **common:** concentra el modelo de dominio y la lógica compartida, reutilizable por distintos casos de uso.
-- **infrastructure:** contiene implementaciones técnicas como persistencia, adaptadores de integración con proveedores externos y configuración.
+- **api-service:** exposes a REST API for querying consolidated domain data.
+- **batch-service:** runs batch processes responsible for synchronizing and updating data from the external provider.
+- **common:** contains the domain model and shared logic, reusable across different use cases.
+- **infrastructure:** holds technical implementations such as persistence, external provider integration adapters, and configuration.
 
-Esta organización permite aislar responsabilidades, reducir acoplamientos y evolucionar el sistema de forma incremental.
+This organization allows responsibilities to be isolated, coupling to be reduced, and the system to evolve incrementally.
 
 ```mermaid
 flowchart LR
-  U[Usuario] --> FE[Frontend<br/>augursclan-frontend]
+  U[User] --> FE[Frontend<br/>augursclan-frontend]
   FE --> API[API Service<br/>api-service]
 
   subgraph Backend [Backend augursclan-backend]
     API --> DB[(PostgreSQL)]
-    BATCH[Batch Service<br/>batch-service] --> EXT[Proveedor externo]
+    BATCH[Batch Service<br/>batch-service] --> EXT[External provider]
     BATCH --> DB
   end
 ```
 
 ---
 
-### Modelo de datos relacional (vista simplificada)
+### Relational data model (simplified view)
 
-Representación del modelo relacional principal, centrada en entidades de dominio y sus relaciones clave.
+Representation of the core relational data model, focused on domain entities and their key relationships.
 
 <img src="docs/images/backend/database/erd-core.png" width="65%" />
 
 ---
 
-### Flujo principal (muy breve)
+### Main flow (very brief)
 
-1. Un proceso batch sincroniza datos deportivos desde un proveedor externo.
-2. Los datos se normalizan y se persisten en la base de datos relacional.
-3. La API expone información consolidada para su consumo por el frontend.
+1. A batch process synchronizes sports data from an external provider.
+2. The data is normalized and persisted in the relational database.
+3. The API exposes consolidated information for consumption by the frontend.
 
-#### Flujo batch (visual)
+#### Batch flow (visual)
 
 ```mermaid
 flowchart TB
-  T[Trigger programado] --> F[Fetch proveedor externo]
-  F --> N[Normalizacion y mapeo a dominio]
-  N --> P[Persistencia en PostgreSQL]
-  P --> E[Exposicion via API]
+  T[Scheduled trigger] --> F[Fetch external provider]
+  F --> N[Normalization and domain mapping]
+  N --> P[Persistence in PostgreSQL]
+  P --> E[Exposure via API]
+
 ```
 
 ---
 
-### Decisiones de diseño
+### Design decisions
 
-- **Separación API vs Batch**  
-  La lectura (API) y la ingesta/sincronización (batch) viven en módulos distintos (`api-service` y `batch-service`). Esto refleja una separación clara de responsabilidades a nivel de estructura del proyecto, permitiendo su despliegue conjunto o independiente según necesidades de evolución.
+- **API vs Batch separation**  
+  Read operations (API) and ingestion/synchronization processes (batch) live in separate modules (`api-service` and `batch-service`). This reflects a clear separation of responsibilities at the project structure level, allowing joint or independent deployment depending on evolution needs.
   
-- **Dominio y lógica compartida en `common`**    
-  El módulo `common` concentra piezas compartidas (modelo de dominio y lógica de aplicación, junto a contratos y abstracciones), favoreciendo reutilización y consistencia.
+- **Shared domain and logic in `common`**  
+  The `common` module concentrates shared elements (domain model and application logic, along with contracts and abstractions), promoting reuse and consistency.
 
-- **Integraciones encapsuladas**  
-  Las integraciones externas se implementan como adaptadores de salida (p. ej. un adaptador REST para API-Football que implementa un puerto del dominio).
+- **Encapsulated integrations**  
+  External integrations are implemented as outbound adapters (e.g., a REST adapter for API-Football implementing a domain port).
 
-- **Inspiración DDD / puertos-adaptadores**  
-  La separación por dominio, aplicación y adaptadores, junto al uso de puertos, es coherente con un enfoque inspirado en DDD y arquitectura hexagonal, sin afirmar una implementación formal/ortodoxa. Este enfoque coloca el dominio en el centro del sistema y los casos de uso a su alrededor, de forma que las dependencias se dirigen hacia el núcleo y la infraestructura queda desacoplada, facilitando la evolución del sistema sin acoplamientos innecesarios.
+- **DDD / ports-and-adapters inspiration**  
+  The separation into domain, application, and adapters, together with the use of ports, aligns with an approach inspired by DDD and hexagonal architecture, without claiming a formal or orthodox implementation. This approach places the domain at the center of the system, with use cases around it, ensuring dependencies point inward and infrastructure remains decoupled—facilitating system evolution without unnecessary coupling.
 
 ---
 
-### Estado actual / Roadmap breve
+### Current state / Short roadmap
 
-#### Estado actual
-- Backend operativo con API y procesos batch de sincronización.
-- Integración funcional con proveedor externo de datos deportivos.
-- Persistencia relacional y modelo de dominio en evolución.
-- Base técnica estable para seguir iterando a nivel de producto.
+#### Current state
+- Operational backend with API and batch synchronization processes.
+- Functional integration with an external sports data provider.
+- Relational persistence and evolving domain model.
+- Stable technical foundation to continue iterating at the product level.
 
-#### Roadmap breve
-- Extensión progresiva de datos y mercados soportados.
-- Consolidación del modelo de dominio y sus reglas.
-- Cierre del ciclo de observabilidad del batch.
-- Evolución de la API orientada a nuevos casos de lectura y análisis.
+#### Short roadmap
+- Progressive extension of supported data and markets.
+- Consolidation of the domain model and its rules.
+- Closing the batch observability loop.
+- API evolution oriented toward new read and analysis use cases.
 
 ---
 
 ### Stack
 
 - **Backend:** Java, Spring Boot, Spring Batch  
-- **Arquitectura:** proyecto multi-módulo Maven, con separación clara de dominio, aplicación e infraestructura, siguiendo principios inspirados en DDD y arquitectura hexagonal.
-- **API:** API REST para exposición de datos y casos de lectura, documentada con OpenAPI / Swagger.
-- **Persistencia:** PostgreSQL (local con Docker Compose), JPA / Hibernate.
-- **Integraciones:** consumo de APIs REST de proveedor externo mediante adaptadores.
-- **Infra local:** Docker Compose.
+- **Architecture:** multi-module Maven project, with clear separation of domain, application, and infrastructure, following principles inspired by DDD and hexagonal architecture.
+- **API:** REST API for data exposure and read use cases, documented with OpenAPI / Swagger.
+- **Persistence:** PostgreSQL (local via Docker Compose), JPA / Hibernate.
+- **Integrations:** consumption of external provider REST APIs via adapters.
+- **Local infra:** Docker Compose.
 - **Build:** Maven.
 
 ---
 
-### Estructura del backend (vista modular)
+### Backend structure (modular view)
 
 <img src="docs/images/backend/structure/backend-modules.png" width="50%" />
 
-- **api-service:** capa de entrada (REST) para exponer casos de uso de lectura.
-- **batch-service:** capa de ingesta y sincronización de datos externos.
-- **common:** núcleo del dominio y lógica de aplicación, independiente de infraestructura.
-- **infrastructure:** adaptadores técnicos (DB, clientes REST, configuración).
+- **api-service:** entry layer (REST) exposing read use cases.
+- **batch-service:** ingestion and synchronization layer for external data.
+- **common:** domain core and application logic, independent of infrastructure.
+- **infrastructure:** technical adapters (DB, REST clients, configuration).
 
 ---
 
 ## Frontend
 
-Aplicación web orientada a la exploración y comparación de datos deportivos, concebida como una capa de análisis sobre la API del backend.
+Web application focused on exploring and comparing sports data, conceived as an analytical layer on top of the backend API.
 
-### Vista general del comparador
+### Comparator overview
 
-Comparador interactivo de dos equipos que permite analizar rendimiento, dinámica reciente y métricas avanzadas desde múltiples perspectivas.
+Interactive comparison of two teams, enabling analysis of performance, recent dynamics, and advanced metrics from multiple perspectives.
 
 <img src="docs/images/frontend/comparator/1-1-dinamica-goles.png" width="95%" />
 
 ---
 
-### Distribución y dinámica de goles
+### Goal distribution and dynamics
 
-Análisis de frecuencia acumulada y comportamiento reciente de goles, diferenciando contexto local / visitante y ventanas temporales configurables.
+Analysis of cumulative frequency and recent goal behavior, differentiating home / away context and configurable time windows.
 
 <img src="docs/images/frontend/comparator/1-2-distribucion-goles.png" width="95%" />
 
 ---
 
-### Mercado vs realidad — Expectativa de victoria
+### Market vs reality — Win expectation
 
-Comparativa entre probabilidad implícita del mercado y probabilidad real observada, incluyendo la desviación (Δp) como métrica de tensión.
+Comparison between market-implied probability and observed real probability, including the deviation (Δp) as a tension metric.
 
 <img src="docs/images/frontend/comparator/1-3-expectativa-victoria-goles.png" width="95%" />
 
 ---
 
-### Estadísticos ofensivos
+### Offensive statistics
 
-Evolución temporal de métricas clave de ataque, con suavizados configurables y separación por local / visitante.
+Temporal evolution of key attacking metrics, with configurable smoothing and home / away separation.
 
 <img src="docs/images/frontend/comparator/2-1-dinamica-corners.png" width="95%" />
 
@@ -208,70 +209,69 @@ Evolución temporal de métricas clave de ataque, con suavizados configurables y
 
 ---
 
-### Control del juego y presión ofensiva
+### Game control and offensive pressure
 
-Indicadores de dominio y generación de peligro: posesión de balón y tiros dentro del área.
+Indicators of dominance and chance creation: ball possession and shots inside the box.
 
 <img src="docs/images/frontend/comparator/4-1-posesion-tiros-en-el-area.png" width="95%" />
 
 ---
 
-### Juego táctico y rendimiento defensivo
+### Tactical play and defensive performance
 
-Métricas relacionadas con estructura de juego y respuesta defensiva: fueras de juego y paradas del portero.
+Metrics related to game structure and defensive response: offsides and goalkeeper saves.
 
 <img src="docs/images/frontend/comparator/4-2-fueras-juego-paras-portero.png" width="95%" />
 
 ---
 
-### Evolución competitiva
+### Competitive evolution
 
-Seguimiento longitudinal del rendimiento en competición: puntos acumulados y balance de goles.
+Longitudinal tracking of competitive performance: accumulated points and goal balance.
 
 <img src="docs/images/frontend/comparator/4-3-puntos-balance-goles.png" width="95%" />
 
 ---
 
-### Contexto de liga y rendimiento global
+### League context and overall performance
 
-Situación en la clasificación y resumen comparativo de rendimiento agregado.
+League standings and comparative summary of aggregated performance.
 
 <img src="docs/images/frontend/comparator/5-1-clasificacion-rendimiento-global.png" width="95%" />
 
 ---
 
-### Decisiones de diseño
+### Design decisions
 
-- Separación entre acceso a datos, transformación analítica y componentes de UI para mantener claridad y testabilidad.
-- Ejecución de parte de la lógica analítica en el frontend (probabilidades implícitas vs reales, suavizados, series temporales) para favorecer exploración y validación visual sin sobrecargar el backend.
-- Visualizaciones orientadas a legibilidad y contexto, no a densidad de información.
-- Las visualizaciones y métricas están concebidas como herramientas de apoyo a la interpretación y al criterio humano, priorizando contexto, comparación y narrativa frente a automatismos o decisiones opacas.
+- Clear separation between data access, analytical transformation, and UI components to maintain clarity and testability.
+- Execution of part of the analytical logic on the frontend (market-implied vs real probabilities, smoothing, time series) to favor exploration and visual validation without overloading the backend.
+- Visualizations designed for readability and context, not information density.
+- Visualizations and metrics are conceived as tools to support interpretation and human judgment, prioritizing context, comparison, and narrative over automation or opaque decision-making.
 
-### Estado actual
+### Current state
 
-- Frontend funcional y estable, conectado a la API del backend.
-- Secciones principales de comparación ya operativas, que evolucionan en paralelo al modelo de datos.
-- Métricas y visualizaciones incorporadas de forma incremental.
+- Functional and stable frontend connected to the backend API.
+- Core comparison sections already operational, evolving in parallel with the data model.
+- Metrics and visualizations added incrementally.
 
-**Stack principal:** Nuxt, Vue, TypeScript, Vuetify, ECharts, i18n.
+**Main stack:** Nuxt, Vue, TypeScript, Vuetify, ECharts, i18n.
 
 ---
 
-### Estructura del frontend (orientada a análisis y visualización)
+### Frontend structure (analysis- and visualization-oriented)
 
 <img src="docs/images/frontend/structure/frontend-folders.png" width="35%" />
 
-- **components:** componentes de UI reutilizables y secciones del comparador (gráficos, layouts visuales, widgets).
-- **composables:** lógica de orquestación y estado (fetch, filtros, params, sincronización UI, helpers Vue/Nuxt).
-- **domain:** transformación analítica y reglas de negocio (series temporales, suavizados, métricas, probabilidades).
-- **types:** contratos TypeScript y DTOs compartidos (tipos de API, modelos de gráficos, estructuras de dominio).
+- **components:** reusable UI components and comparator sections (charts, visual layouts, widgets).
+- **composables:** orchestration and state logic (fetching, filters, params, UI synchronization, Vue/Nuxt helpers).
+- **domain:** analytical transformation and business rules (time series, smoothing, metrics, probabilities).
+- **types:** shared TypeScript contracts and DTOs (API types, chart models, domain structures).
 
 ---
 
-## Repos relacionados
+## Related repositories
 
-- **Backend:** repositorio privado (API y procesos batch).
-- **Frontend:** repositorio privado (aplicación de visualización y exploración de datos).
+- **Backend:** private repository (API and batch processes).
+- **Frontend:** private repository (data exploration and visualization application).
 
-> El backend y el frontend se mantienen en repositorios privados; **el código y la aplicación en ejecución** pueden mostrarse en directo durante procesos de selección técnica.
-
+> The backend and frontend are maintained in private repositories; **the source code and the running application** can be demonstrated live during technical interview processes.
