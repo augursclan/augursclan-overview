@@ -179,7 +179,7 @@ Web application focused on exploring and comparing sports data, conceived as an 
 
 Interactive comparison of two teams, enabling analysis of performance, recent dynamics, and advanced metrics from multiple perspectives.
 
-<img src="docs/images/frontend/comparator/1-1-dinamica-goles.png" width="95%" />
+<img src="docs/images/frontend/comparator/dinamica-1.png" width="95%" />
 
 ---
 
@@ -187,7 +187,11 @@ Interactive comparison of two teams, enabling analysis of performance, recent dy
 
 Analysis of cumulative frequency and recent goal behavior, differentiating home / away context and configurable time windows.
 
-<img src="docs/images/frontend/comparator/1-2-distribucion-goles.png" width="95%" />
+<img src="docs/images/frontend/comparator/distribucion-1.png" width="95%" />
+
+---
+
+<img src="docs/images/frontend/comparator/distribucion-2.png" width="95%" />
 
 ---
 
@@ -195,7 +199,15 @@ Analysis of cumulative frequency and recent goal behavior, differentiating home 
 
 Comparison between market-implied probability and observed real probability, including the deviation (Δp) as a tension metric.
 
-<img src="docs/images/frontend/comparator/1-3-expectativa-victoria-goles.png" width="95%" />
+<img src="docs/images/frontend/comparator/expectativa-1.png" width="95%" />
+
+---
+
+<img src="docs/images/frontend/comparator/expectativa-2.png" width="95%" />
+
+---
+
+<img src="docs/images/frontend/comparator/expectativa-3.png" width="95%" />
 
 ---
 
@@ -203,9 +215,15 @@ Comparison between market-implied probability and observed real probability, inc
 
 Temporal evolution of key attacking metrics, with configurable smoothing and home / away separation.
 
-<img src="docs/images/frontend/comparator/2-1-dinamica-corners.png" width="95%" />
+<img src="docs/images/frontend/comparator/dinamica-1.png" width="95%" />
 
-<img src="docs/images/frontend/comparator/3-1-dinamica-tiros-puerta.png" width="95%" />
+---
+
+<img src="docs/images/frontend/comparator/dinamica-2.png" width="95%" />
+
+---
+
+<img src="docs/images/frontend/comparator/dinamica-3.png" width="95%" />
 
 ---
 
@@ -213,7 +231,7 @@ Temporal evolution of key attacking metrics, with configurable smoothing and hom
 
 Indicators of dominance and chance creation: ball possession and shots inside the box.
 
-<img src="docs/images/frontend/comparator/4-1-posesion-tiros-en-el-area.png" width="95%" />
+<img src="docs/images/frontend/comparator/posesion-tiros-en-el-area.png" width="95%" />
 
 ---
 
@@ -221,7 +239,7 @@ Indicators of dominance and chance creation: ball possession and shots inside th
 
 Metrics related to game structure and defensive response: offsides and goalkeeper saves.
 
-<img src="docs/images/frontend/comparator/4-2-fueras-juego-paras-portero.png" width="95%" />
+<img src="docs/images/frontend/comparator/fueras-juego-paras-portero.png" width="95%" />
 
 ---
 
@@ -229,7 +247,7 @@ Metrics related to game structure and defensive response: offsides and goalkeepe
 
 Longitudinal tracking of competitive performance: accumulated points and goal balance.
 
-<img src="docs/images/frontend/comparator/4-3-puntos-balance-goles.png" width="95%" />
+<img src="docs/images/frontend/comparator/puntos-balance-goles.png" width="95%" />
 
 ---
 
@@ -237,7 +255,7 @@ Longitudinal tracking of competitive performance: accumulated points and goal ba
 
 League standings and comparative summary of aggregated performance.
 
-<img src="docs/images/frontend/comparator/5-1-clasificacion-rendimiento-global.png" width="95%" />
+<img src="docs/images/frontend/comparator/clasificacion-rendimiento-global.png" width="95%" />
 
 ---
 
