@@ -195,6 +195,14 @@ Analysis of cumulative frequency and recent goal behavior, differentiating home 
 
 ---
 
+<img src="docs/images/frontend/comparator/distribucion-3.png" width="95%" />
+
+---
+
+<img src="docs/images/frontend/comparator/distribucion-4.png" width="95%" />
+
+---
+
 ### Market vs reality — Win expectation
 
 Comparison between market-implied probability and observed real probability, including the deviation (Δp) as a tension metric.
