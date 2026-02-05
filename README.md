@@ -162,14 +162,58 @@ flowchart TB
 
 ---
 
-### Backend structure (modular view)
+### Backend structure (modular, DDD & hexagonal-inspired)
 
-<img src="docs/images/backend/structure/backend-modules.png" width="50%" />
+The backend is organized as a **multi-module Maven project inspired by Domain-Driven Design (DDD) and hexagonal (ports-and-adapters) architecture**, with a clear separation of responsibilities at system level.  
+These principles guide the overall design of the backend, while being applied pragmatically to keep the system evolvable and maintainable.
 
-- **api-service:** entry layer (REST) exposing read use cases.
-- **batch-service:** ingestion and synchronization layer for external data.
-- **common:** domain core and application logic, independent of infrastructure.
-- **infrastructure:** technical adapters (DB, REST clients, configuration).
+<img src="docs/images/backend/structure/backend-modules.png" width="55%" />
+
+---
+
+#### Core backend modules
+
+- **api-service**  
+  REST entry point exposing read-oriented use cases.  
+  Focused on HTTP and API concerns, delegating all business logic to domain and application layers.
+
+- **batch-service**  
+  Ingestion and synchronization layer for external sports data.  
+  Isolated from the API to clearly separate read use cases from data acquisition and maintenance workflows.
+
+- **common**  
+  Shared domain core and application logic reused across backend modules.  
+  Contains domain entities, value objects, and shared rules, intentionally independent of infrastructure and frameworks.
+
+- **infrastructure**  
+  Technical implementations and adapters (database persistence, external REST clients, configuration).  
+  Depends on the domain, never the other way around, enforcing inward dependency direction.
+
+- **pre-analysis-service**  
+  Independent module focused on pre-analysis and signal preparation use cases.  
+  It provides a clear example of how domain logic, application workflows, and technical concerns are kept separated within the overall architectural approach.
+
+---
+
+#### Focus example: `pre-analysis-service` (internal structure)
+
+Internally, `pre-analysis-service` is structured to clearly separate **business rules, application workflows, and technical concerns**:
+
+- **preanalysis-domain**  
+  Pure domain model and business rules for pre-analysis.  
+  Framework-agnostic, stable, and focused exclusively on expressing the problem space.
+
+- **preanalysis-application**  
+  Application use cases and orchestration logic.  
+  Coordinates domain behavior and defines ports (interfaces) for required external interactions.
+
+- **preanalysis-adapters**  
+  Concrete implementations of outbound ports (persistence, external services, integrations).  
+  Fully replaceable, keeping technical details isolated from the core logic.
+
+- **preanalysis-container**  
+  Composition root and runtime wiring.  
+  Assembles domain, application, and adapters using the chosen framework without leaking it into the core.
 
 ---
 
