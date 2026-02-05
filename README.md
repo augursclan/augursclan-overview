@@ -1,3 +1,5 @@
+![AugursClan – Product in action: market vs reality analysis](docs/images/hero/augursclan-hero.png)
+
 # AugursClan — Project Overview
 
 Platform under development for sports data analysis and visualization.  
