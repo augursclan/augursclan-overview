@@ -223,91 +223,51 @@ Web application focused on exploring and comparing sports data, conceived as an 
 
 ### Comparator overview
 
-Interactive comparison of two teams, enabling analysis of performance, recent dynamics, and advanced metrics from multiple perspectives.
+Interactive comparison of two teams through flexible analytical views that combine trends, distributions, and comparative signals.
 
-<img src="docs/images/frontend/comparator/dinamica-1.png" width="95%" />
-
----
-
-### Goal distribution and dynamics
-
-Analysis of cumulative frequency and recent goal behavior, differentiating home / away context and configurable time windows.
-
-<img src="docs/images/frontend/comparator/distribucion-1.png" width="95%" />
+<img src="docs/images/frontend/comparator/dinamica-tiros-a-puerta-vs-posesion.png" width="95%" />
 
 ---
 
-<img src="docs/images/frontend/comparator/distribucion-2.png" width="95%" />
+### Analytical perspectives
+
+The comparator supports multiple analytical perspectives that can be applied across metrics such as goals, corners, shots, and related indicators. It combines temporal dynamics, statistical distributions, and market-versus-observed value views to support exploratory analysis.
+
+<img src="docs/images/frontend/comparator/dinamica-goles.png" width="95%" />
 
 ---
 
-<img src="docs/images/frontend/comparator/distribucion-3.png" width="95%" />
+<img src="docs/images/frontend/comparator/distribucion-acumulada-corners-over.png" width="95%" />
 
 ---
 
-<img src="docs/images/frontend/comparator/distribucion-4.png" width="95%" />
+<img src="docs/images/frontend/comparator/dinamica-corners.png" width="95%" />
+
+---
+
+<img src="docs/images/frontend/comparator/valor-corners.png" width="95%" />
 
 ---
 
 ### Market vs reality — Win expectation
 
-Comparison between market-implied probability and observed real probability, including the deviation (Δp) as a tension metric.
+Compares market-implied win probability with observed probability and the deviation (Δp).
 
-<img src="docs/images/frontend/comparator/expectativa-1.png" width="95%" />
-
----
-
-<img src="docs/images/frontend/comparator/expectativa-2.png" width="95%" />
-
----
-
-<img src="docs/images/frontend/comparator/expectativa-3.png" width="95%" />
-
----
-
-### Offensive statistics
-
-Temporal evolution of key attacking metrics, with configurable smoothing and home / away separation.
-
-<img src="docs/images/frontend/comparator/dinamica-1.png" width="95%" />
-
----
-
-<img src="docs/images/frontend/comparator/dinamica-2.png" width="95%" />
-
----
-
-<img src="docs/images/frontend/comparator/dinamica-3.png" width="95%" />
+<img src="docs/images/frontend/comparator/valor-victoria.png" width="95%" />
 
 ---
 
 ### Game control and offensive pressure
 
-Indicators of dominance and chance creation: ball possession and shots inside the box.
+Indicators of control and chance creation: possession and shots on target.
 
-<img src="docs/images/frontend/comparator/posesion-tiros-en-el-area.png" width="95%" />
-
----
-
-### Tactical play and defensive performance
-
-Metrics related to game structure and defensive response: offsides and goalkeeper saves.
-
-<img src="docs/images/frontend/comparator/fueras-juego-paras-portero.png" width="95%" />
-
----
-
-### Competitive evolution
-
-Longitudinal tracking of competitive performance: accumulated points and goal balance.
-
-<img src="docs/images/frontend/comparator/puntos-balance-goles.png" width="95%" />
+<img src="docs/images/frontend/comparator/dinamica-tiros-a-puerta-vs-posesion.png" width="95%" />
 
 ---
 
 ### League context and overall performance
 
-League standings and comparative summary of aggregated performance.
+League standings and a comparative summary of overall performance.
 
 <img src="docs/images/frontend/comparator/clasificacion-rendimiento-global.png" width="95%" />
 
