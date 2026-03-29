@@ -2,7 +2,7 @@
 
 # AugursClan — Project Overview
 
-Platform under development for sports data analysis and visualization.  
+Platform under development for sports data discovery, analysis, and visualization.  
 This repository provides a **public-facing overview** of the product and architectural decisions behind the AugursClan project (MVP in progress).
 
 > ℹ️ This repository is a **public overview of the AugursClan project**.  
@@ -219,7 +219,31 @@ Internally, `pre-analysis-service` is structured to clearly separate **business 
 
 ## Frontend
 
-Web application focused on exploring and comparing sports data, conceived as an analytical layer on top of the backend API.
+Web application focused on discovering, exploring, and comparing sports data, conceived as an analytical layer on top of the backend API.
+
+### Pre-analysis — Discovery layer
+
+Ranked view of upcoming fixtures designed to surface analytically interpretable matches based on recent goal patterns. It acts as an entry point into the analytical workflow, allowing users to move from initial discovery into deeper inspection through the comparator.
+
+<img src="docs/images/frontend/pre-analysis/pre-analysis-page.png" width="95%" />
+
+---
+
+#### What it does
+
+- Ranks upcoming fixtures by the clarity of their recent goal distributions.
+- Identifies profile patterns such as open-game vs low-scoring match dynamics.
+- Evaluates signal stability to distinguish more robust readings from more fragile ones.
+- Provides a direct handoff into the comparator for deeper inspection.
+
+#### Product role
+
+- This layer is not predictive.
+- It does not forecast outcomes or recommend decisions.
+- It helps identify where the available data appears more structured and analytically interpretable.
+- It serves as a discovery and prioritization tool within the broader analytical workflow.
+
+---
 
 ### Comparator overview
 
