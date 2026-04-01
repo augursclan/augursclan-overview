@@ -223,7 +223,7 @@ Web application focused on discovering, exploring, and comparing sports data, co
 
 ### Pre-analysis — Discovery layer
 
-Ranked view of upcoming fixtures designed to surface analytically interpretable matches based on recent goal patterns. It acts as an entry point into the analytical workflow, allowing users to move from initial discovery into deeper inspection through the comparator.
+Ranked view of upcoming fixtures designed to surface analytically interpretable matches based on recent patterns across multiple analytical signals. It acts as an entry point into the analytical workflow, allowing users to move from initial discovery into deeper inspection through the comparator.
 
 <img src="docs/images/frontend/pre-analysis/pre-analysis-page.png" width="95%" />
 
@@ -231,7 +231,7 @@ Ranked view of upcoming fixtures designed to surface analytically interpretable 
 
 #### What it does
 
-- Ranks upcoming fixtures by the clarity of their recent goal distributions.
+- Ranks upcoming fixtures by the clarity of recent statistical patterns.
 - Identifies profile patterns such as open-game vs low-scoring match dynamics.
 - Evaluates signal stability to distinguish more robust readings from more fragile ones.
 - Provides a direct handoff into the comparator for deeper inspection.
@@ -240,7 +240,7 @@ Ranked view of upcoming fixtures designed to surface analytically interpretable 
 
 - This layer is not predictive.
 - It does not forecast outcomes or recommend decisions.
-- It helps identify where the available data appears more structured and analytically interpretable.
+- It helps identify where the available analytical signals appear more structured and analytically interpretable.
 - It serves as a discovery and prioritization tool within the broader analytical workflow.
 
 ---
